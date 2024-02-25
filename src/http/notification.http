@@ -1,0 +1,36 @@
+# baseURL
+@baseURL = http://localhost:3000/notifications
+
+###
+# User Signup
+POST {{ baseURL }}/push
+Content-Type: application/json
+
+{
+    "message": "Hello World",
+    "platform": "android",
+    "token": "fasdasdasdasd",
+    "title": "Hello"
+}
+
+###
+# User Login
+POST {{ baseURL }}/email
+Content-Type: application/json
+
+{
+    "email": "example@email.com",
+    "subject": "Hello World",
+    "message": "Hello World",
+    
+}
+
+###
+# User Logout
+POST {{ baseURL }}/sms
+Content-Type: application/json
+
+{
+    "phoneNumber": "6281535672",
+    "message": "Hello World"
+}
