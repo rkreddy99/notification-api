@@ -22,12 +22,13 @@ export class NotificationConsumer {
   }
 
   private async startConsumer(queueName: string, callback: (notification: any) => Promise<void>): Promise<void> {
-    await this.redisClient.brpop(queueName, 0);
+    console.log(`Starting ${queueName} consumer...`);
     this.processQueue(queueName, callback);
   }
 
   private async processQueue(queueName: string, callback: (notification: any) => Promise<void>): Promise<void> {
     while (true) {
+      console.log(`Waiting for notifications in queue: ${queueName}`);
       const [, notificationData] = await this.redisClient.brpop(queueName, 0);
       if (notificationData) {
         const notification = JSON.parse(notificationData);
@@ -56,6 +57,7 @@ export class NotificationConsumer {
 
   private async handleSmsNotification(notification: SmsNotification): Promise<void> {
     try {
+      console.log('Processing sms notification:', notification);
       await messagingService.sendSms(notification);
       console.log('Processing sms notification:', notification);
     } catch (error) {
