@@ -7,6 +7,9 @@ The Notification Service is a Node.js application designed to handle the deliver
 ![notification-service-hld](image.png)
 
 
+We can use kafka for persistance and scalability.
+Rate limiter can be added as well based on the notification tag, like 1 per day for promotional mails etc.
+
 
 ### Components:
 
